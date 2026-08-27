@@ -1,7 +1,7 @@
 {
   "branding": {
     "companyName": "T M SILK",
-    "slogan": "Fine Fabrics & Exports",
+    "slogan": "The Art of Fine Fabric",
     "logoType": "badge",
     "logoInitials": "TM",
     "logoImageUrl": ""
@@ -27,40 +27,45 @@
     "craftImg1": "",
     "craftImg2": ""
   },
-  "categories": ["All", "Bhagalpur Tussar", "Linen Weaves", "Cotton Blends"],
+  "categories": [
+    "All",
+    "Bhagalpur Tussar",
+    "Linen Weaves",
+    "Cotton Blends"
+  ],
   "products": [
     {
-      "id": 1,
-      "designNo": "BGP-TSS-01",
-      "category": "Bhagalpur Tussar",
-      "title": "Pure Bhagalpuri Wild Tussar Silk",
       "gsm": "90 GSM",
       "width": "54 Inches",
       "composition": "100% Tussar Silk",
+      "title": "Pure Bhagalpuri Wild Tussar Silk",
+      "id": 1,
+      "image": "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=800",
       "description": "Authentic textured wild silk produced in Bhagalpur with organic slub depth and Azo-free dyeing.",
-      "image": "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=800"
+      "category": "Bhagalpur Tussar",
+      "designNo": "BGP-TSS-01"
     },
     {
-      "id": 2,
-      "designNo": "BGP-LNS-02",
-      "category": "Linen Weaves",
-      "title": "Bhagalpur Linen Silk Blend",
       "gsm": "115 GSM",
       "width": "57 Inches",
       "composition": "60% Tussar Silk, 40% Natural Linen",
+      "title": "Bhagalpur Linen Silk Blend",
+      "id": 2,
+      "image": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800",
       "description": "Shuttle-woven blend combining structural crispness with natural silk luster for international couture.",
-      "image": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800"
+      "category": "Linen Weaves",
+      "designNo": "BGP-LNS-02"
     },
     {
-      "id": 3,
-      "designNo": "BGP-CTL-03",
-      "category": "Cotton Blends",
-      "title": "Organic Handspun Cotton Linen",
       "gsm": "",
       "width": "",
       "composition": "",
+      "title": "Organic Handspun Cotton Linen",
+      "id": 3,
+      "image": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&q=80&w=800",
       "description": "",
-      "image": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&q=80&w=800"
+      "category": "Cotton Blends",
+      "designNo": "BGP-CTL-03"
     }
   ]
 }
