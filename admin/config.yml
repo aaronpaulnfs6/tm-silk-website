@@ -1,0 +1,58 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "site"
+    label: "Website Content"
+    files:
+      - name: "site_data"
+        label: "Website Settings and Products"
+        file: "site-data.json"
+        format: "json"
+        fields:
+          - label: "Branding"
+            name: "branding"
+            widget: "object"
+            fields:
+              - { label: "Company Name", name: "companyName", widget: "string" }
+              - { label: "Slogan", name: "slogan", widget: "string", required: false }
+              - { label: "Logo Type", name: "logoType", widget: "select", options: ["badge", "image"] }
+              - { label: "Logo Initials", name: "logoInitials", widget: "string", required: false }
+              - { label: "Logo Image", name: "logoImageUrl", widget: "image", required: false }
+          - label: "Homepage Text"
+            name: "settings"
+            widget: "object"
+            fields:
+              - { label: "Hero Tag", name: "heroTag", widget: "string" }
+              - { label: "Hero Title", name: "heroTitle", widget: "string" }
+              - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text" }
+              - { label: "About Text", name: "aboutText", widget: "text" }
+          - label: "Contact Details"
+            name: "contactInfo"
+            widget: "object"
+            fields:
+              - { label: "Address", name: "address", widget: "text" }
+              - { label: "Primary Email", name: "email1", widget: "string" }
+              - { label: "Secondary Email", name: "email2", widget: "string", required: false }
+              - { label: "Primary Phone", name: "phone1", widget: "string" }
+              - { label: "Secondary Phone", name: "phone2", widget: "string", required: false }
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            field: { label: "Category", name: "category", widget: "string" }
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            fields:
+              - { label: "Design Number", name: "designNo", widget: "string" }
+              - { label: "Category", name: "category", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "GSM", name: "gsm", widget: "string", required: false }
+              - { label: "Width", name: "width", widget: "string", required: false }
+              - { label: "Composition", name: "composition", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }

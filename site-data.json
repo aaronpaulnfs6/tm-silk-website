@@ -1,0 +1,66 @@
+{
+  "branding": {
+    "companyName": "T M SILK",
+    "slogan": "Fine Fabrics & Exports",
+    "logoType": "badge",
+    "logoInitials": "TM",
+    "logoImageUrl": ""
+  },
+  "settings": {
+    "heroTag": "Silk Manufacturers & Exporters | Bhagalpur, India",
+    "heroTitle": "Master Craftsmanship in Premium Silk & Textiles",
+    "heroSubtitle": "Specializing in organic Tussar Silk, Linen blends, and premium weaves tailored for global fashion houses and apparel brands.",
+    "aboutText": "Directly supplying international fashion labels with high-grade silk and textiles. Headquartered in Bhagalpur, India, we ensure sustainable fair-trade practices, Azo-free yarn dyeing, and rigorous export quality control."
+  },
+  "contactInfo": {
+    "address": "Champanagar, Bhagalpur, Bihar - 812004, India",
+    "email1": "exports@tmsilk.com",
+    "email2": "info@tmsilk.com",
+    "phone1": "+91 (0) 98765 43210",
+    "phone2": "+91 (0) 98765 43211"
+  },
+  "media": {
+    "heroVideo": "",
+    "craftVideo": "",
+    "heroImg1": "",
+    "heroImg2": "",
+    "craftImg1": "",
+    "craftImg2": ""
+  },
+  "categories": ["All", "Bhagalpur Tussar", "Linen Weaves", "Cotton Blends"],
+  "products": [
+    {
+      "id": 1,
+      "designNo": "BGP-TSS-01",
+      "category": "Bhagalpur Tussar",
+      "title": "Pure Bhagalpuri Wild Tussar Silk",
+      "gsm": "90 GSM",
+      "width": "54 Inches",
+      "composition": "100% Tussar Silk",
+      "description": "Authentic textured wild silk produced in Bhagalpur with organic slub depth and Azo-free dyeing.",
+      "image": "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 2,
+      "designNo": "BGP-LNS-02",
+      "category": "Linen Weaves",
+      "title": "Bhagalpur Linen Silk Blend",
+      "gsm": "115 GSM",
+      "width": "57 Inches",
+      "composition": "60% Tussar Silk, 40% Natural Linen",
+      "description": "Shuttle-woven blend combining structural crispness with natural silk luster for international couture.",
+      "image": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "id": 3,
+      "designNo": "BGP-CTL-03",
+      "category": "Cotton Blends",
+      "title": "Organic Handspun Cotton Linen",
+      "gsm": "",
+      "width": "",
+      "composition": "",
+      "description": "",
+      "image": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&q=80&w=800"
+    }
+  ]
+}

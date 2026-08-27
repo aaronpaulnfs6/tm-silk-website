@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="site-title-tag">T M SILK | Fine Fabrics & Exports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- EmailJS for sending inquiry-notification emails (client-side, no backend needed) -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        @media print {
+            body * { visibility: hidden; }
+            #printable-inquiry-area, #printable-inquiry-area * { visibility: visible; }
+            #printable-inquiry-area { position: absolute; left: 0; top: 0; width: 100%; color: black !important; background: white !important; }
+            #printable-inquiry-area table { border-collapse: collapse; width: 100%; }
+            #printable-inquiry-area th, #printable-inquiry-area td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        }
+    </style>
+</head>
+<body class="bg-amber-50/50 text-stone-800 selection:bg-rose-600 selection:text-white">
+
+    <!-- MAIN NAVIGATION BAR -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-amber-200/80 shadow-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                <!-- DYNAMIC LOGO CONTAINER -->
+                <div id="display-brand-logo-container"></div>
+                <span id="display-brand-name" class="text-2xl font-serif tracking-wider text-stone-900 font-bold"></span>
+            </div>
+            
+            <!-- STYLISH & VISIBLE BOLD NAVIGATION LINKS -->
+            <div class="hidden md:flex space-x-8 font-extrabold text-sm tracking-wider uppercase text-stone-800">
+                <button onclick="navigateTo('home')" class="nav-btn hover:text-rose-700 transition-all duration-300 py-2 border-b-2 border-transparent hover:scale-105 transform" id="nav-home">Home</button>
+                <button onclick="navigateTo('about')" class="nav-btn hover:text-rose-700 transition-all duration-300 py-2 border-b-2 border-transparent hover:scale-105 transform" id="nav-about">About Us</button>
+                <button onclick="navigateTo('craft')" class="nav-btn hover:text-rose-700 transition-all duration-300 py-2 border-b-2 border-transparent hover:scale-105 transform" id="nav-craft">The Craft</button>
+                <button onclick="navigateTo('product')" class="nav-btn hover:text-rose-700 transition-all duration-300 py-2 border-b-2 border-transparent hover:scale-105 transform" id="nav-product">Product</button>
+                <button onclick="navigateTo('contact')" class="nav-btn hover:text-rose-700 transition-all duration-300 py-2 border-b-2 border-transparent hover:scale-105 transform" id="nav-contact">Contact Us</button>
+            </div>
+
+            <!-- HEADER SOCIAL LINKS & ADMIN LOGIN -->
+            <div class="flex items-center space-x-4">
+                <div id="header-social-links" class="hidden lg:flex items-center space-x-3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- WEBSITE PAGES CONTAINER -->
+    <main id="public-view">
+
+        <!-- PAGE 1: HOME -->
+        <section id="page-home" class="page-content space-y-24 pb-24">
+            <!-- Hero Banner -->
+            <div class="relative bg-gradient-to-br from-rose-950 via-purple-950 to-stone-900 min-h-[85vh] flex items-center justify-center overflow-hidden text-white">
+                <div class="absolute inset-0 bg-gradient-to-r from-rose-950/90 via-purple-950/70 to-amber-950/50 z-10"></div>
+                <video id="display-hero-video" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-30"></video>
+
+                <div class="relative z-20 max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <span id="display-hero-tag" class="text-amber-300 text-xs uppercase tracking-widest font-bold bg-rose-900/80 border border-rose-500/60 px-4 py-2 inline-block rounded-full shadow-lg"></span>
+                        <h1 id="display-hero-title" class="text-4xl md:text-6xl font-serif leading-tight drop-shadow-md"></h1>
+                        <!-- COMPANY SLOGAN DISPLAY -->
+                        <div class="space-y-2">
+                            <p id="display-hero-slogan" class="text-amber-300 text-xl font-serif italic tracking-wide font-medium"></p>
+                            <p id="display-hero-subtitle" class="text-amber-100/90 text-lg font-light leading-relaxed"></p>
+                        </div>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <button onclick="navigateTo('product')" class="bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-8 py-4 uppercase tracking-widest text-xs transition shadow-xl hover:shadow-amber-500/20 rounded">Explore Fabrics</button>
+                            <button onclick="navigateTo('contact')" class="border border-rose-300/60 hover:bg-white/10 text-white px-8 py-4 uppercase tracking-widest text-xs font-bold transition rounded">Contact Trade Desk</button>
+                        </div>
+                    </div>
+
+                    <div class="hidden md:grid grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <img id="display-hero-img1" class="rounded-lg shadow-2xl h-64 w-full object-cover border-2 border-amber-400/30">
+                            <div class="bg-stone-900/80 backdrop-blur border border-amber-500/30 p-4 rounded-lg text-xs space-y-1 shadow-lg">
+                                <span class="text-amber-400 font-bold uppercase tracking-wider block">Artisan Precision</span>
+                                <p class="text-stone-300">Bhagalpur manufacturing roots crafted for worldwide export standards.</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4 mt-8">
+                            <img id="display-hero-img2" class="rounded-lg shadow-2xl h-64 w-full object-cover border-2 border-rose-400/30">
+                            <div class="bg-stone-900/80 backdrop-blur border border-rose-500/30 p-4 rounded-lg text-xs space-y-1 shadow-lg">
+                                <span class="text-amber-400 font-bold uppercase tracking-wider block">Sustainable Quality</span>
+                                <p class="text-stone-300">Azo-free yarn dyed fabrics built with meticulous yarn selection.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Preview Teasers -->
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+                <div class="bg-white border-t-4 border-rose-600 p-8 rounded-xl space-y-4 shadow-lg hover:shadow-xl transition">
+                    <span class="text-rose-700 font-bold text-xs uppercase tracking-widest">Our Heritage</span>
+                    <h3 class="text-2xl font-serif text-stone-900">Based in Bhagalpur</h3>
+                    <p class="text-stone-600 text-sm font-light leading-relaxed">Headquartered in the legendary silk and weaving hub of Bhagalpur, Bihar, we combine regional textile wisdom with global quality control.</p>
+                    <button onclick="navigateTo('about')" class="text-rose-700 text-xs font-bold uppercase tracking-wider hover:underline">Read Our Story &rarr;</button>
+                </div>
+
+                <div class="bg-white border-t-4 border-amber-500 p-8 rounded-xl space-y-4 shadow-lg hover:shadow-xl transition">
+                    <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Production Process</span>
+                    <h3 class="text-2xl font-serif text-stone-900">The Craft</h3>
+                    <p class="text-stone-600 text-sm font-light leading-relaxed">From eco-friendly Azo-free yarn dyeing to specialized Handloom configurations, discover our commitment to textile production.</p>
+                    <button onclick="navigateTo('craft')" class="text-amber-600 text-xs font-bold uppercase tracking-wider hover:underline">Explore The Craft &rarr;</button>
+                </div>
+
+                <div class="bg-white border-t-4 border-teal-600 p-8 rounded-xl space-y-4 shadow-lg hover:shadow-xl transition">
+                    <span class="text-teal-700 font-bold text-xs uppercase tracking-widest">Textile Solutions</span>
+                    <h3 class="text-2xl font-serif text-stone-900">Product Standards</h3>
+                    <p class="text-stone-600 text-sm font-light leading-relaxed">Discover our custom swatching, bespoke weaving flexibility, and international export standard textiles tailored for global labels.</p>
+                    <button onclick="navigateTo('product')" class="text-teal-700 text-xs font-bold uppercase tracking-wider hover:underline">View Product Capabilities &rarr;</button>
+                </div>
+            </div>
+
+            <!-- EMBEDDED "TEXTILE EXCELLENCE" SECTION -->
+            <div class="max-w-7xl mx-auto px-6 border-t border-amber-200/60 pt-16 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-4">
+                    <span class="text-rose-700 text-xs uppercase tracking-widest font-bold">Manufacturing Pillars</span>
+                    <h2 class="text-4xl md:text-5xl font-serif text-stone-900">Textile Excellence</h2>
+                    <p class="text-stone-600 font-light">Crafting superior fabrics through rigorous quality benchmarks, sustainable practices, and precise weaving standards.</p>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="bg-white border border-amber-200 p-6 rounded-xl space-y-3 shadow-md hover:border-rose-400 hover:shadow-lg transition">
+                        <div class="text-3xl">🧵</div>
+                        <h3 class="text-lg font-serif text-stone-900 font-semibold">Count Accuracy</h3>
+                        <p class="text-stone-600 text-xs font-light leading-relaxed">Strict adherence to target Lea weights, reed/pick densities, and yarn count calculations for consistent fabric weight and drape.</p>
+                    </div>
+
+                    <div class="bg-white border border-amber-200 p-6 rounded-xl space-y-3 shadow-md hover:border-amber-400 hover:shadow-lg transition">
+                        <div class="text-3xl">🌿</div>
+                        <h3 class="text-lg font-serif text-stone-900 font-semibold">Azo-Free Dyeing</h3>
+                        <p class="text-stone-600 text-xs font-light leading-relaxed">Eco-friendly yarn-dyed processes that safeguard environmental integrity while guaranteeing rich color fastness and safety.</p>
+                    </div>
+
+                    <div class="bg-white border border-amber-200 p-6 rounded-xl space-y-3 shadow-md hover:border-teal-400 hover:shadow-lg transition">
+                        <div class="text-3xl">⚡</div>
+                        <h3 class="text-lg font-serif text-stone-900 font-semibold">Structural Integrity</h3>
+                        <p class="text-stone-600 text-xs font-light leading-relaxed">Hand-Balanced warp threads and rhythmic shuttle craft keep the weave true, steady thread alignment and protecting the fabric against bias twist, shifting, and uneven stretch.</p>
+                    </div>
+
+                    <div class="bg-white border border-amber-200 p-6 rounded-xl space-y-3 shadow-md hover:border-purple-400 hover:shadow-lg transition">
+                        <div class="text-3xl">🌍</div>
+                        <h3 class="text-lg font-serif text-stone-900 font-semibold">Global Export Standard</h3>
+                        <p class="text-stone-600 text-xs font-light leading-relaxed">Full international trade alignment, detailed swatch matching, and standardized batch inspections for global brands.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EMBEDDED "THE CRAFT" SECTION ON HOMEPAGE -->
+            <div class="max-w-7xl mx-auto px-6 space-y-12 border-t border-amber-200/60 pt-16">
+                <div class="text-center max-w-3xl mx-auto space-y-4">
+                    <span class="text-amber-600 text-xs uppercase tracking-widest font-bold">Technique & Production</span>
+                    <h2 class="text-4xl md:text-5xl font-serif text-stone-900">The Craft Behind Our Textiles</h2>
+                    <p class="text-stone-600 font-light">Fineness, yarn selection, and specialized dye processes.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="relative rounded-2xl overflow-hidden border-2 border-amber-300 bg-stone-900 shadow-2xl">
+                        <video id="display-home-craft-video" controls class="w-full h-80 md:h-[400px] object-cover"></video>
+                        <div class="p-4 bg-stone-900 border-t border-stone-800 text-xs text-stone-300 flex justify-between items-center">
+                            <span>🎥 Mill & Weaving Spotlight</span>
+                            <span class="text-amber-400 font-semibold">Bhagalpur, India</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <img id="display-home-craft-img1" class="rounded-xl h-40 w-full object-cover border-2 border-rose-300 shadow-md">
+                            <img id="display-home-craft-img2" class="rounded-xl h-40 w-full object-cover border-2 border-teal-300 shadow-md">
+                        </div>
+                        <div class="bg-gradient-to-r from-amber-100 to-rose-100 border border-amber-300 p-6 rounded-xl space-y-3 shadow-md">
+                            <h3 class="text-lg font-serif text-stone-900 font-bold">Azo-Free Yarn Dyed Fabrics</h3>
+                            <p class="text-stone-700 text-sm font-light leading-relaxed">We specialize in Azo-free yarn dyed processes to ensure rich color retention, skin safety, and strict alignment with international eco-friendly standards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: ABOUT US -->
+        <section id="page-about" class="page-content space-y-16 py-12 hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                    <span class="text-rose-700 text-xs uppercase tracking-widest font-bold">Company Profile</span>
+                    <h1 class="text-4xl md:text-5xl font-serif text-stone-900">About <span class="display-about-company-name"></span></h1>
+                    <p class="text-stone-600 font-light">Combining textile roots with global export standards.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-6">
+                        <span class="text-amber-600 text-xs uppercase tracking-widest font-bold">Rooted in Bhagalpur, India</span>
+                        <h2 class="text-3xl font-serif text-stone-900 leading-tight">Bridging Traditional Excellence with Global Fashions</h2>
+                        <p id="display-about-text" class="text-stone-700 leading-relaxed font-light"></p>
+                        <p class="text-stone-600 text-sm font-light leading-relaxed">Operating out of Bhagalpur, Bihar—one of India's most celebrated textile hubs—<span class="display-about-company-name font-semibold"></span> focuses on producing superior silk and silk blends, Linen weaves, and custom weaved Tweed fabrics. Our operations strictly emphasize eco-friendly Azo-free yarn dyeing, Sleek construction, and dependable export finishing.</p>
+                    </div>
+
+                    <div class="relative bg-gradient-to-br from-rose-900 to-purple-950 text-white p-8 rounded-2xl space-y-6 shadow-2xl">
+                        <h3 class="text-2xl font-serif text-amber-300">Manufacturing Commitment</h3>
+                        <div class="space-y-4 text-amber-50 text-sm font-light">
+                            <div class="p-4 bg-white/10 backdrop-blur border border-amber-300/30 rounded">
+                                <strong class="text-amber-300 block mb-1">Direct Production Oversight:</strong>
+                                Rigorous quality checks on every batch from raw yarn inspection to final packing.
+                            </div>
+                            <div class="p-4 bg-white/10 backdrop-blur border border-amber-300/30 rounded">
+                                <strong class="text-amber-300 block mb-1">Global Trade Ready:</strong>
+                                Structured specifically to handle custom swatching, low MOQ trial runs, and scalable volume production.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: THE CRAFT -->
+        <section id="page-craft" class="page-content space-y-16 py-12 hidden">
+            <div class="max-w-7xl mx-auto px-6 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-4">
+                    <span class="text-amber-600 text-xs uppercase tracking-widest font-bold">Technique & Production</span>
+                    <h1 class="text-4xl md:text-5xl font-serif text-stone-900">The Craft Behind Our Textiles</h1>
+                    <p class="text-stone-600 font-light">Fineness, yarn selection, and specialized dye processes.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="relative rounded-2xl overflow-hidden border-2 border-amber-400 bg-stone-900 shadow-2xl">
+                        <video id="display-craft-video" controls class="w-full h-80 md:h-[400px] object-cover"></video>
+                        <div class="p-4 bg-stone-900 border-t border-stone-800 text-xs text-stone-300 flex justify-between items-center">
+                            <span>🎥 Mill & Weaving Spotlight</span>
+                            <span class="text-amber-400 font-semibold">Bhagalpur, India</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <img id="display-craft-img1" class="rounded-xl h-40 w-full object-cover border-2 border-rose-300 shadow-md">
+                            <img id="display-craft-img2" class="rounded-xl h-40 w-full object-cover border-2 border-teal-300 shadow-md">
+                        </div>
+                        <div class="bg-gradient-to-r from-amber-100 to-rose-100 border border-amber-300 p-6 rounded-xl space-y-3 shadow-md">
+                            <h3 class="text-lg font-serif text-stone-900 font-bold">Azo-Free Yarn Dyed Fabrics</h3>
+                            <p class="text-stone-700 text-sm font-light leading-relaxed">We specialize in Azo-free yarn dyed processes to ensure rich color retention, skin safety, and strict alignment with international eco-friendly standards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: PRODUCT -->
+        <section id="page-product" class="page-content space-y-16 py-12 hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center space-y-4 mb-16">
+                    <span class="text-rose-700 text-xs uppercase tracking-widest font-bold">Capabilities & Catalog</span>
+                    <h1 class="text-4xl md:text-5xl font-serif text-stone-900">Products & Export Standards</h1>
+                    <p class="text-stone-600 max-w-xl mx-auto font-light">Explore our fabric developments, custom weaving capabilities, and order standards.</p>
+
+                    <div id="category-filters" class="flex flex-wrap justify-center gap-3 pt-6"></div>
+                </div>
+
+                <div id="product-grid" class="grid md:grid-cols-3 gap-8 mb-20"></div>
+
+                <div class="border-t border-amber-200/60 pt-16">
+                    <h2 class="text-2xl font-serif text-stone-900 text-center mb-12">Export Production Standards</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white border-t-4 border-rose-600 p-8 rounded-xl space-y-4 shadow-lg">
+                            <div class="text-rose-700 font-bold text-lg font-serif">01. Custom Fabric Swatching</div>
+                            <p class="text-stone-600 text-sm leading-relaxed font-light">Request swatch kits or schedule trial sample runs to verify weight, feel, and drape prior to volume weaving.</p>
+                        </div>
+                        <div class="bg-white border-t-4 border-amber-500 p-8 rounded-xl space-y-4 shadow-lg">
+                            <div class="text-amber-600 font-bold text-lg font-serif">02. Bespoke Weaving Solutions</div>
+                            <p class="text-stone-600 text-sm leading-relaxed font-light">Tailored reed-and-pick counts, custom GSM, and blended warp/weft options created specifically for your apparel collections.</p>
+                        </div>
+                        <div class="bg-white border-t-4 border-teal-600 p-8 rounded-xl space-y-4 shadow-lg">
+                            <div class="text-teal-700 font-bold text-lg font-serif">03. International Export Standard Fabrics</div>
+                            <p class="text-stone-600 text-sm leading-relaxed font-light">Produced with Azo-free yarn dyed components meeting strict international criteria for color fastness and fabric consistency.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: CONTACT US -->
+        <section id="page-contact" class="page-content py-12 hidden">
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-12">
+                <div class="md:col-span-2 space-y-8">
+                    <div>
+                        <span class="text-rose-700 text-xs uppercase tracking-widest font-bold">Trade Desk</span>
+                        <h1 class="text-4xl font-serif text-stone-900 mt-2">Contact Us</h1>
+                        <p class="text-stone-600 font-light mt-4 leading-relaxed">Reach out directly to our team for swatch kits, trial production runs, or custom weaving specifications.</p>
+                    </div>
+
+                    <div class="space-y-6 text-sm">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-lg bg-rose-100 border border-rose-200 flex items-center justify-center text-rose-700 shrink-0 font-bold shadow-sm">📍</div>
+                            <div>
+                                <h4 class="text-stone-900 font-semibold">Head Office Address</h4>
+                                <p id="display-contact-address" class="text-stone-600 font-light mt-1 whitespace-pre-line"></p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-lg bg-amber-100 border border-amber-200 flex items-center justify-center text-amber-700 shrink-0 font-bold shadow-sm">✉️</div>
+                            <div>
+                                <h4 class="text-stone-900 font-semibold">Export & Business Emails</h4>
+                                <p id="display-contact-email1" class="text-stone-600 font-light mt-1"></p>
+                                <p id="display-contact-email2" class="text-stone-600 font-light"></p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-lg bg-teal-100 border border-teal-200 flex items-center justify-center text-teal-700 shrink-0 font-bold shadow-sm">📞</div>
+                            <div>
+                                <h4 class="text-stone-900 font-semibold">Phone / WhatsApp</h4>
+                                <p id="display-contact-phone1" class="text-stone-600 font-light mt-1"></p>
+                                <p id="display-contact-phone2" class="text-stone-600 font-light"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-amber-100 to-rose-100 border border-amber-300 p-6 rounded-xl space-y-2 text-xs shadow-md">
+                        <p class="text-rose-800 font-bold uppercase tracking-wider">Order Policy & Quality Standards:</p>
+                        <p class="text-stone-700">• Swatch Samples: Dispatched via express courier</p>
+                        <p class="text-stone-700">• Dyeing Standard: Azo-Free Yarn Dyed Fabrics</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-3">
+                    <form id="inquiry-form" name="customer-inquiry" method="POST" action="/thank-you.html" data-netlify="true" class="space-y-6 bg-white p-8 md:p-10 rounded-2xl border border-amber-200 shadow-xl">
+                        <input type="hidden" name="form-name" value="customer-inquiry">
+                        <h3 class="text-2xl font-serif text-stone-900 mb-6">Send an Inquiry</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-stone-600 font-bold mb-2">Full Name *</label>
+                                <input type="text" id="inquiry-name" name="name" required class="w-full bg-amber-50/50 border border-amber-200 p-4 text-stone-900 rounded focus:outline-none focus:border-rose-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-stone-600 font-bold mb-2">Business Email *</label>
+                                <input type="email" id="inquiry-email" name="email" required class="w-full bg-amber-50/50 border border-amber-200 p-4 text-stone-900 rounded focus:outline-none focus:border-rose-600">
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-stone-600 font-bold mb-2">Contact Number *</label>
+                                <input type="tel" id="inquiry-phone" name="phone" required placeholder="+91 98765 43210" class="w-full bg-amber-50/50 border border-amber-200 p-4 text-stone-900 rounded focus:outline-none focus:border-rose-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-stone-600 font-bold mb-2">Company / Brand Name</label>
+                                <input type="text" id="inquiry-company" name="company" class="w-full bg-amber-50/50 border border-amber-200 p-4 text-stone-900 rounded focus:outline-none focus:border-rose-600">
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-stone-600 font-bold mb-2">Country *</label>
+                                <input type="text" id="inquiry-country" name="country" required placeholder="e.g. United States, India, France" class="w-full bg-amber-50/50 border border-amber-200 p-4 text-stone-900 rounded focus:outline-none focus:border-rose-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-stone-600 font-bold mb-2">Inquiry Type *</label>
+                                <select id="inquiry-type" name="inquiry_type" required onchange="handleInquiryTypeChange(this)" class="w-full bg-amber-50/50 border border-amber-200 p-4 text-stone-900 rounded focus:outline-none focus:border-rose-600">
+                                    <option value="Sample">Sample Request</option>
+                                    <option value="Trial Order">Trial Order</option>
+                                    <option value="Bulk Order">Bulk Production Order</option>
+                                    <option value="General Inquiry">General Business Inquiry</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-stone-600 font-bold mb-2">Design / Code No. (Optional)</label>
+                                <input type="text" id="inquiry-design" name="design_no" placeholder="e.g. BGP-TSS-01" class="w-full bg-amber-50/50 border border-amber-200 p-4 text-stone-900 rounded focus:outline-none focus:border-rose-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider text-stone-600 font-bold mb-2">Required Quantity / Meters</label>
+                                <input type="text" id="inquiry-qty" name="quantity" placeholder="e.g. Swatch Sample / 50 Meters" class="w-full bg-amber-50/50 border border-amber-200 p-4 text-stone-900 rounded focus:outline-none focus:border-rose-600">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-stone-600 font-bold mb-2">Project Specification Notes</label>
+                            <textarea id="inquiry-message" name="message" rows="4" placeholder="Specify GSM, reed/pick preferences, colorways, or fabric construction requirements..." class="w-full bg-amber-50/50 border border-amber-200 p-4 text-stone-900 rounded focus:outline-none focus:border-rose-600"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-rose-700 via-amber-600 to-amber-500 hover:opacity-95 text-white py-4 uppercase tracking-widest text-xs font-bold transition rounded shadow-lg shadow-rose-900/20">Submit Inquiry</button>
+                        <p id="inquiry-status" class="text-center text-sm text-emerald-700 font-semibold hidden"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TRIAL ORDER POPUP MODAL -->
+    <div id="trial-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/70 backdrop-blur-sm hidden">
+        <div class="bg-white border-2 border-amber-400 p-8 rounded-2xl max-w-md w-full mx-4 shadow-2xl space-y-6 text-center transform transition-all scale-100">
+            <div class="w-16 h-16 bg-amber-100 border border-amber-300 rounded-full flex items-center justify-center text-3xl mx-auto text-amber-700">📋</div>
+            <div class="space-y-2">
+                <h3 class="text-2xl font-serif text-stone-900 font-bold">Trial Order Guidelines</h3>
+                <p class="text-stone-600 text-sm font-light leading-relaxed">
+                    Standard MOQ for Trial Orders is <strong class="text-rose-700 font-semibold">50 Meters</strong>. 
+                </p>
+                <p class="text-stone-500 text-xs italic">
+                    (Minimum order quantity is negotiable depending on fabric specification and stock availability).
+                </p>
+            </div>
+            <button onclick="closeTrialModal()" class="w-full bg-gradient-to-r from-rose-700 via-amber-600 to-amber-500 text-white font-bold py-3 uppercase tracking-wider text-xs rounded shadow-md hover:opacity-95">Accept & Continue</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-900 text-stone-400 py-12 px-6 text-center text-sm border-t border-amber-900/40 flex flex-col items-center space-y-6">
+        <div id="footer-social-links" class="flex justify-center items-center space-x-6"></div>
+        <p id="footer-text"></p>
+    </footer>
+
+
+    <!-- APPLICATION CONTROLLER & DATABASE SCRIPT -->
+    <script>
+        /* ============ SHARED BACKEND CONFIG ============
+           This site's content/products/inquiries live in a small Cloudflare
+           Worker (see worker.js) instead of this browser's local storage, so
+           admin edits show up for every visitor. Paste your deployed Worker
+           URL below (no trailing slash). See DEPLOY.md for setup steps.
+        ==================================================================== */
+        const API_BASE = "";
+
+        const DEFAULT_DB = {
+            adminAuth: {
+                id: "tmsilk_admin",
+                passwordHash: null,
+                recoveryId: "TMSILK-RECOVERY-01",
+                recoveryHash: null,
+                recoveryEmail: "",
+                otpHash: null,
+                otpExpiry: null,
+                failedAttempts: 0,
+                lockUntil: null
+            },
+            branding: {
+                companyName: "T M SILK",
+                slogan: "Fine Fabrics & Exports",
+                logoType: "badge",
+                logoInitials: "TM",
+                logoImageUrl: ""
+            },
+            settings: {
+                heroTag: "Silk Manufacturers & Exporters | Bhagalpur, India",
+                heroTitle: "Master Craftsmanship in Premium Silk & Textiles",
+                heroSubtitle: "Specializing in organic Tussar Silk, Linen blends, and premium weaves tailored for global fashion houses and apparel brands.",
+                aboutText: "Directly supplying international fashion labels with high-grade silk and textiles. Headquartered in Bhagalpur, India, we ensure sustainable fair-trade practices, Azo-free yarn dyeing, and rigorous export quality control."
+            },
+            contactInfo: {
+                address: "Champanagar, Bhagalpur, Bihar - 812004, India",
+                email1: "exports@tmsilk.com",
+                email2: "info@tmsilk.com",
+                phone1: "+91 (0) 98765 43210",
+                phone2: "+91 (0) 98765 43211"
+            },
+            socialMedia: {
+                instagram: { active: true, url: "https://instagram.com" },
+                facebook: { active: true, url: "https://facebook.com" },
+                linkedin: { active: true, url: "https://linkedin.com" },
+                whatsapp: { active: true, url: "https://wa.me/919876543210" }
+            },
+            media: {
+                heroVideo: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-craftsman-weaving-fabric-42880-large.mp4",
+                craftVideo: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-craftsman-weaving-fabric-42880-large.mp4",
+                heroImg1: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=600",
+                heroImg2: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=600",
+                craftImg1: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&q=80&w=500",
+                craftImg2: "https://images.unsplash.com/photo-1528458876861-544fd1761a91?auto=format&fit=crop&q=80&w=500"
+            },
+            alertSettings: {
+                email: "exports@tmsilk.com",
+                popupAlert: true,
+                soundAlert: false
+            },
+            categories: ["All", "Bhagalpur Tussar", "Linen Weaves", "Cotton Blends"],
+            products: [
+                { id: 1, designNo: "BGP-TSS-01", category: "Bhagalpur Tussar", title: "Pure Bhagalpuri Wild Tussar Silk", gsm: "90 GSM", width: "54 Inches", composition: "100% Tussar Silk", description: "Authentic textured wild silk produced in Bhagalpur with organic slub depth and Azo-free dyeing.", image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=800" },
+                { id: 2, designNo: "BGP-LNS-02", category: "Linen Weaves", title: "Bhagalpur Linen Silk Blend", gsm: "115 GSM", width: "57 Inches", composition: "60% Tussar Silk, 40% Natural Linen", description: "Shuttle-woven blend combining structural crispness with natural silk luster for international couture.", image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800" },
+                { id: 3, designNo: "BGP-CTL-03", category: "Cotton Blends", title: "Organic Handspun Cotton Linen", gsm: "", width: "", composition: "", description: "", image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&q=80&w=800" }
+            ],
+            inquiries: []
+        };
+
+        function cloneDefault(value) {
+            return JSON.parse(JSON.stringify(value));
+        }
+
+        function normalizeDB(parsed) {
+            if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+                return cloneDefault(DEFAULT_DB);
+            }
+
+            const mergeDefaults = (target, defaults) => {
+                Object.keys(defaults).forEach(key => {
+                    if (target[key] === undefined) {
+                        target[key] = cloneDefault(defaults[key]);
+                        return;
+                    }
+                    if (defaults[key] && typeof defaults[key] === 'object' && !Array.isArray(defaults[key])) {
+                        if (!target[key] || typeof target[key] !== 'object' || Array.isArray(target[key])) {
+                            target[key] = cloneDefault(defaults[key]);
+                        } else {
+                            mergeDefaults(target[key], defaults[key]);
+                        }
+                    }
+                });
+                return target;
+            };
+
+            mergeDefaults(parsed, DEFAULT_DB);
+            if (!Array.isArray(parsed.inquiries)) parsed.inquiries = [];
+            if (!Array.isArray(parsed.products)) parsed.products = [];
+            if (!Array.isArray(parsed.categories)) parsed.categories = [];
+            return parsed;
+        }
+
+        /* ============ SHARED DATA LAYER (server-backed, with local fallback) ============
+           getDB()/saveDB() keep their original synchronous signatures so nothing
+           else in this file has to change. An in-memory cache (__dbCache) is
+           populated from the shared server at load time (see bootstrapDB below);
+           the browser's local storage is kept only as an offline fallback copy.
+        =================================================================================== */
+        let __dbCache = null;
+
+        async function bootstrapDB() {
+            try {
+                const res = await fetch('/site-data.json', { cache: 'no-store' });
+                if (!res.ok) throw new Error('Server returned ' + res.status);
+                const parsed = await res.json();
+                __dbCache = normalizeDB(parsed || {});
+                try { localStorage.setItem('tmsilk_full_db', JSON.stringify(__dbCache)); } catch (_) {}
+            } catch (_) {
+                // Offline or Worker not configured yet: fall back to the last known
+                // copy in this browser (or the built-in defaults) so the site still renders.
+                let cached = null;
+                try { cached = localStorage.getItem('tmsilk_full_db'); } catch (_) {}
+                __dbCache = cached ? normalizeDB(JSON.parse(cached)) : cloneDefault(DEFAULT_DB);
+            }
+        }
+
+        function getDB() {
+            if (__dbCache) return __dbCache;
+            let cached = null;
+            try { cached = localStorage.getItem('tmsilk_full_db'); } catch (_) {}
+            __dbCache = cached ? normalizeDB(JSON.parse(cached)) : cloneDefault(DEFAULT_DB);
+            return __dbCache;
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        }
+
+        function safeMediaUrl(value) {
+            const url = String(value ?? '').trim();
+            if (!url) return '';
+            // Preserve normal remote media and only allow tightly-scoped raster data URLs.
+            if (/^data:(?:image|video)\/[a-z0-9.+-]+;base64,[a-z0-9+/=]+$/i.test(url)) return url;
+            try {
+                const parsed = new URL(url, window.location.href);
+                if (parsed.protocol === 'http:' || parsed.protocol === 'https:') return url;
+            } catch (_) {}
+            return '';
+        }
+
+        function safeExternalUrl(value) {
+            const url = String(value ?? '').trim();
+            if (!url) return '';
+            try {
+                const parsed = new URL(url, window.location.href);
+                if (parsed.protocol === 'http:' || parsed.protocol === 'https:') return parsed.href;
+            } catch (_) {}
+            return '';
+        }
+
+        async function saveDB(db) {
+            // This file only ever calls saveDB() to record a new customer inquiry
+            // (see the inquiry form handler below). Visitors are never allowed to
+            // overwrite site content/products/admin settings, so only the newest
+            // inquiry is sent, and only to a restricted, public inquiry endpoint.
+            __dbCache = db;
+            try { localStorage.setItem('tmsilk_full_db', JSON.stringify(db)); } catch (_) {}
+
+            const latest = db.inquiries[db.inquiries.length - 1];
+            try {
+                const res = await fetch(API_BASE + '/api/inquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(latest)
+                });
+                if (!res.ok) throw new Error('Server returned ' + res.status);
+            } catch (_) {
+                // Keep the current UI/data intact if the shared server is unreachable.
+                return false;
+            }
+            initWebsite();
+            return true;
+        }
+
+        function handleInquiryTypeChange(selectElem) {
+            const trialModal = document.getElementById('trial-modal');
+            if (selectElem.value === "Trial Order") {
+                trialModal.classList.remove('hidden');
+            } else {
+                trialModal.classList.add('hidden');
+            }
+        }
+
+        function closeTrialModal() {
+            document.getElementById('trial-modal').classList.add('hidden');
+        }
+
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            document.getElementById(`page-${pageId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('text-rose-700', 'border-rose-700');
+                b.classList.add('border-transparent', 'text-stone-800');
+            });
+
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if(activeNav) {
+                activeNav.classList.add('text-rose-700', 'border-rose-700');
+                activeNav.classList.remove('border-transparent', 'text-stone-800');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderSocialIcons() {
+            const db = getDB();
+            const headerContainer = document.getElementById('header-social-links');
+            const footerContainer = document.getElementById('footer-social-links');
+            
+            headerContainer.innerHTML = '';
+            footerContainer.innerHTML = '';
+
+            const iconsMap = {
+                instagram: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
+                facebook: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg>`,
+                linkedin: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>`,
+                whatsapp: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>`
+            };
+
+            Object.keys(db.socialMedia).forEach(key => {
+                const soc = db.socialMedia[key];
+                if(soc.active && soc.url) {
+                    const socialUrl = safeExternalUrl(soc.url);
+                    if (!socialUrl) return;
+                    const hLink = document.createElement('a');
+                    hLink.href = socialUrl;
+                    hLink.target = "_blank";
+                    hLink.rel = "noopener noreferrer";
+                    hLink.className = "text-stone-600 hover:text-rose-700 transition";
+                    hLink.innerHTML = iconsMap[key];
+                    headerContainer.appendChild(hLink);
+
+                    const fLink = document.createElement('a');
+                    fLink.href = socialUrl;
+                    fLink.target = "_blank";
+                    fLink.rel = "noopener noreferrer";
+                    fLink.className = "text-stone-400 hover:text-amber-400 transition";
+                    fLink.innerHTML = iconsMap[key];
+                    footerContainer.appendChild(fLink);
+                }
+            });
+        }
+
+        function renderBranding() {
+            const db = getDB();
+            const b = db.branding;
+
+            document.title = `${b.companyName} | ${b.slogan}`;
+
+            const brandNameElem = document.getElementById('display-brand-name');
+            const nameParts = b.companyName.trim().split(' ');
+            if(nameParts.length > 1) {
+                const lastWord = nameParts.pop();
+                brandNameElem.innerHTML = `${escapeHtml(nameParts.join(' '))} <span class="text-rose-700">${escapeHtml(lastWord)}</span>`;
+            } else {
+                brandNameElem.innerText = b.companyName;
+            }
+
+            const logoContainer = document.getElementById('display-brand-logo-container');
+            if(b.logoType === 'image' && b.logoImageUrl) {
+                const logoUrl = safeMediaUrl(b.logoImageUrl);
+                logoContainer.innerHTML = logoUrl ? `<img src="${escapeHtml(logoUrl)}" alt="${escapeHtml(b.companyName)} Logo" class="h-10 w-auto max-w-[150px] object-contain rounded">` : '';
+            } else {
+                logoContainer.innerHTML = `<div class="w-10 h-10 rounded-full bg-gradient-to-tr from-rose-700 via-amber-600 to-amber-500 flex items-center justify-center font-serif font-bold text-lg text-white shadow-md uppercase">${escapeHtml(b.logoInitials || 'TM')}</div>`;
+            }
+
+            document.getElementById('display-hero-slogan').innerText = b.slogan;
+            document.getElementById('footer-text').innerHTML = `&copy; 2026 ${escapeHtml(b.companyName)} | ${escapeHtml(b.slogan)}. All Rights Reserved.`;
+
+            document.querySelectorAll('.display-about-company-name').forEach(el => {
+                el.innerText = b.companyName;
+            });
+        }
+
+        function initWebsite() {
+            const db = getDB();
+
+            renderBranding();
+            
+            document.getElementById('display-hero-tag').innerText = db.settings.heroTag;
+            document.getElementById('display-hero-title').innerText = db.settings.heroTitle;
+            document.getElementById('display-hero-subtitle').innerText = db.settings.heroSubtitle;
+            document.getElementById('display-about-text').innerText = db.settings.aboutText;
+
+            document.getElementById('display-contact-address').innerText = db.contactInfo.address;
+            document.getElementById('display-contact-email1').innerText = db.contactInfo.email1;
+            document.getElementById('display-contact-email2').innerText = db.contactInfo.email2 || '';
+            document.getElementById('display-contact-phone1').innerText = db.contactInfo.phone1;
+            document.getElementById('display-contact-phone2').innerText = db.contactInfo.phone2 || '';
+
+            document.getElementById('display-hero-video').src = db.media.heroVideo;
+            document.getElementById('display-craft-video').src = db.media.craftVideo;
+            document.getElementById('display-home-craft-video').src = db.media.craftVideo;
+            document.getElementById('display-hero-img1').src = db.media.heroImg1;
+            document.getElementById('display-hero-img2').src = db.media.heroImg2;
+            document.getElementById('display-craft-img1').src = db.media.craftImg1;
+            document.getElementById('display-craft-img2').src = db.media.craftImg2;
+            document.getElementById('display-home-craft-img1').src = db.media.craftImg1;
+            document.getElementById('display-home-craft-img2').src = db.media.craftImg2;
+
+            renderSocialIcons();
+
+            const filterContainer = document.getElementById('category-filters');
+            filterContainer.innerHTML = '';
+            db.categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = `px-6 py-2.5 text-xs uppercase tracking-wider rounded-full border transition font-semibold ${cat === 'All' ? 'bg-gradient-to-r from-rose-700 to-amber-600 text-white border-transparent shadow-md' : 'bg-white text-stone-700 border-amber-200 hover:border-rose-400'}`;
+                btn.innerText = cat;
+                btn.onclick = () => {
+                    document.querySelectorAll('#category-filters button').forEach(b => {
+                        b.className = 'px-6 py-2.5 text-xs uppercase tracking-wider rounded-full border bg-white text-stone-700 border-amber-200 hover:border-rose-400 font-semibold';
+                    });
+                    btn.className = 'px-6 py-2.5 text-xs uppercase tracking-wider rounded-full border bg-gradient-to-r from-rose-700 to-amber-600 text-white border-transparent shadow-md font-semibold';
+                    renderProducts(cat, db.products);
+                };
+                filterContainer.appendChild(btn);
+            });
+
+            renderProducts('All', db.products);
+        }
+
+        function renderProducts(category, products) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            
+            const filtered = category === 'All' ? products : products.filter(p => p.category === category);
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p class="col-span-3 text-center text-stone-500 py-12">No fabrics found in this category.</p>';
+                return;
+            }
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-amber-200 rounded-xl overflow-hidden shadow-lg flex flex-col justify-between hover:shadow-2xl hover:border-rose-400 transition group';
+                
+                const hasDetails = p.gsm || p.width || p.composition;
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="${hasDetails || p.title || p.description ? 'h-64' : 'h-80'} bg-stone-100 overflow-hidden relative">
+                            <img src="${escapeHtml(safeMediaUrl(p.image))}" alt="${escapeHtml(p.title || p.designNo)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 bg-rose-700 text-white text-xs font-bold px-3 py-1 uppercase tracking-widest rounded-full shadow-md">${escapeHtml(p.category)}</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex justify-between items-center text-xs text-amber-600 uppercase tracking-widest font-bold">
+                                <span>Code: ${escapeHtml(p.designNo)}</span>
+                            </div>
+                            ${p.title ? `<h3 class="text-xl font-serif text-stone-900 font-bold">${escapeHtml(p.title)}</h3>` : ''}
+                            ${p.description ? `<p class="text-stone-600 text-sm font-light leading-relaxed">${escapeHtml(p.description)}</p>` : ''}
+                            ${hasDetails ? `
+                            <div class="pt-4 border-t border-amber-100 grid grid-cols-2 gap-2 text-xs text-stone-700">
+                                ${p.gsm ? `<div><strong>GSM:</strong> ${escapeHtml(p.gsm)}</div>` : ''}
+                                ${p.width ? `<div><strong>Width:</strong> ${escapeHtml(p.width)}</div>` : ''}
+                                ${p.composition ? `<div class="col-span-2"><strong>Composition:</strong> ${escapeHtml(p.composition)}</div>` : ''}
+                            </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button type="button" data-inquiry-design="${escapeHtml(p.designNo)}" class="inquiry-product-btn w-full bg-stone-900 hover:bg-rose-700 text-white py-3 uppercase tracking-wider text-xs font-bold transition rounded shadow-md">Request Sample / Inquiry</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function selectForInquiry(designNo) {
+            document.getElementById('inquiry-design').value = designNo;
+            document.getElementById('inquiry-type').value = "Sample";
+            document.getElementById('inquiry-qty').value = "Swatch Sample Kit";
+            navigateTo('contact');
+        }
+
+        document.getElementById('product-grid').addEventListener('click', (event) => {
+            const button = event.target.closest('.inquiry-product-btn');
+            if (!button) return;
+            selectForInquiry(button.getAttribute('data-inquiry-design') || '');
+        });
+
+        /* ============ EMAILJS CONFIG (for inquiry notification emails) ============
+           Reuses the same EmailJS account as admin.html (Public Key + Service ID).
+           You only need to create ONE new thing: an "Inquiry Notification" template.
+           1. In EmailJS, go to Email Templates -> Create New Template
+           2. Use these variables in the template body: {{to_email}}, {{from_name}},
+              {{from_email}}, {{phone}}, {{company}}, {{country}}, {{order_type}},
+              {{design_no}}, {{quantity}}, {{message}}
+           3. Copy its Template ID and paste it below
+        ============================================================================ */
+        const EMAILJS_PUBLIC_KEY = "tefnGM00NWfc5WGeC";
+        const EMAILJS_SERVICE_ID = "service_9qszi5n";
+        const EMAILJS_INQUIRY_TEMPLATE_ID = "template_ygmcjb7";
+
+        if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY_HERE') {
+            emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+        }
+
+        document.getElementById('inquiry-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const db = getDB();
+            const newInquiry = {
+                id: Date.now(),
+                date: new Date().toISOString(),
+                name: document.getElementById('inquiry-name').value,
+                email: document.getElementById('inquiry-email').value,
+                phone: document.getElementById('inquiry-phone').value,
+                company: document.getElementById('inquiry-company').value,
+                country: document.getElementById('inquiry-country').value,
+                orderType: document.getElementById('inquiry-type').value,
+                designNo: document.getElementById('inquiry-design').value,
+                quantity: document.getElementById('inquiry-qty').value,
+                message: document.getElementById('inquiry-message').value
+            };
+            db.inquiries.push(newInquiry);
+            if (!await saveDB(db)) {
+                const status = document.getElementById('inquiry-status');
+                status.classList.remove('hidden');
+                status.classList.remove('text-emerald-700');
+                status.classList.add('text-rose-700');
+                status.innerText = 'Unable to submit the inquiry in this browser. Please try again.';
+                return;
+            }
+
+            const status = document.getElementById('inquiry-status');
+            status.classList.remove('hidden');
+            status.innerText = "Inquiry submitted successfully! Our export desk will contact you soon.";
+            document.getElementById('inquiry-form').reset();
+
+            if(db.alertSettings.popupAlert) {
+                alert(`🔔 ALERT FOR ADMIN (${db.alertSettings.email}): New ${newInquiry.orderType} received from ${newInquiry.name} (${newInquiry.country}) - ${newInquiry.email}!`);
+            }
+
+            if (typeof emailjs !== 'undefined'
+                && typeof emailjs.send === 'function'
+                && EMAILJS_INQUIRY_TEMPLATE_ID !== 'YOUR_INQUIRY_TEMPLATE_ID_HERE'
+                && db.alertSettings.email) {
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_INQUIRY_TEMPLATE_ID, {
+                    to_email: db.alertSettings.email,
+                    from_name: newInquiry.name,
+                    from_email: newInquiry.email,
+                    phone: newInquiry.phone,
+                    company: newInquiry.company || 'N/A',
+                    country: newInquiry.country,
+                    order_type: newInquiry.orderType,
+                    design_no: newInquiry.designNo || 'N/A',
+                    quantity: newInquiry.quantity || 'N/A',
+                    message: newInquiry.message || 'N/A'
+                }).catch(() => {
+                    // Fails silently for the visitor — the inquiry is already saved either way.
+                    // Check EmailJS config in this file if notification emails stop arriving.
+                });
+            }
+        };
+
+        // Netlify Forms handles inquiries without browser-side database writes.
+        document.getElementById('inquiry-form').onsubmit = null;
+
+        (async () => {
+            await bootstrapDB();
+            initWebsite();
+            navigateTo('home');
+        })();
+    </script>
+</body>
+</html>
